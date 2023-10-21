@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
+    public CharacterState currentState;
+    
     public abstract class CharacterState
     {
         public int stateIndex;
+        public PlayerAction playerAction;
         public abstract void EnterState();
         public abstract void DuringState();
         public abstract void ExitState();
@@ -22,7 +25,8 @@ public class PlayerStateMachine : MonoBehaviour
         }
         public override void DuringState()
         {
-            // attack
+            // attack if possible
+            if (playerAction.target != null) playerAction.Attack();
         }
         public override void ExitState()
         {
@@ -49,8 +53,6 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
-    public CharacterState currentState;
-
     public void SwitchState(CharacterState state)
     {
         if (currentState != null)
@@ -59,6 +61,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
         currentState = state;
         currentState.EnterState();
+        currentState.playerAction = gameObject.GetComponent<PlayerAction>();
     }
 
     private void Start()
@@ -66,7 +69,7 @@ public class PlayerStateMachine : MonoBehaviour
         SwitchState(new IdleState());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(currentState != null)
         {
