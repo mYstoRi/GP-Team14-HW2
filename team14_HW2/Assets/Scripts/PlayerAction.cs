@@ -20,7 +20,8 @@ public class PlayerAction : MonoBehaviour
             projectile = Instantiate(ArrowPrefab);
             projectile.transform.parent = gameObject.transform;
             projectile.transform.localPosition = Vector3.zero;
-            projectile.GetComponent<Rigidbody>().velocity = (target.GetComponent<Transform>().position - transform.position) * projectileSpeed;
+            projectile.GetComponent<ArrowBehavior>().target = target;
+            projectile.GetComponent<Rigidbody>().velocity = (target.GetComponent<Transform>().position - transform.position).normalized * projectileSpeed;
         }
     }
 

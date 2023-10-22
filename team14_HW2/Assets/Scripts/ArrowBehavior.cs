@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArrowBehavior : MonoBehaviour
 {
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,6 @@ public class ArrowBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (target != null) transform.LookAt(target.transform);
     }
 }

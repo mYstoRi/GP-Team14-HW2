@@ -21,6 +21,7 @@ public class TargetRangeDetect : MonoBehaviour
             if (other.tag == "enemy")
             {
                 player.GetComponent<PlayerAction>().target = other.gameObject;
+                target = other.gameObject;
                 print(other.gameObject.name);
             }
         }
