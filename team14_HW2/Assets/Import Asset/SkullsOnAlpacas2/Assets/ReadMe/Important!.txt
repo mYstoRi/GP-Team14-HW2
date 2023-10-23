@@ -1,0 +1,9 @@
+*****IMPORT SETTINGS****
+
+Make sure the 'Convert Units' box is unchecked within the Import Settings! 
+This should be defaulted upon import. Make sure to uncheck it in case it is not.
+If the user decides to have this option enabled then the 'Scale Factor' of the models has to be set to 100.
+Please take a quick look at the pdf document provided to better understand how to set up your characters.
+
+
+Happy development!
