@@ -18,10 +18,10 @@ public class PlayerAction : MonoBehaviour
         {
             attackCD = 50 / attackSpeed;
             projectile = Instantiate(ArrowPrefab);
-            projectile.transform.parent = gameObject.transform;
-            projectile.transform.localPosition = Vector3.zero;
+            projectile.transform.parent = null;
+            projectile.transform.position = gameObject.transform.position + Vector3.up;
             projectile.GetComponent<ArrowBehavior>().target = target;
-            projectile.GetComponent<Rigidbody>().velocity = (target.GetComponent<Transform>().position - transform.position).normalized * projectileSpeed;
+            projectile.GetComponent<Rigidbody>().velocity = (target.GetComponent<Transform>().position - Vector3.up - transform.position).normalized * projectileSpeed;
         }
     }
 
