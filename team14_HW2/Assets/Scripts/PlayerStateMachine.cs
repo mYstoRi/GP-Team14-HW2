@@ -29,18 +29,25 @@ public class PlayerStateMachine : MonoBehaviour
             print("enter idle state");
             // switch animation
             animator.SetBool("idle", true);
+            playerAction.attackCD = 50 / playerAction.attackSpeed + 10;
 
         }
         public override void DuringState()
         {
             // attack if possible
-            if (playerAction.target != null) playerAction.Attack();
+            if (playerAction.target != null)
+            {
+                playerAction.Attack();
+            }
+            else animator.SetBool("shooting", false);
+
         }
         public override void ExitState()
         {
             print("exit idle state");
             // close idle animation
             animator.SetBool("idle", false);
+            animator.SetBool("shooting", false);
         }
     }
     public class MoveState : CharacterState
