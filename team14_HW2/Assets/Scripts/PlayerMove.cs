@@ -7,14 +7,18 @@ public class PlayerMove : MonoBehaviour
 {
     public float speed;
     public float motionSmooth;
+    public float jumpHeight;
 
     private PlayerStateMachine state;
     private Rigidbody rb;
     private PlayerAction playerAction;
+    public Animator anim;
 
     private Vector2 inputDirection;
     private Vector3 direction;
     private Vector3 lookAt;
+    private Vector3 velocity;
+    private float jumpForce;
 
     public GameObject debugLookAt;
 
@@ -37,25 +41,49 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 0.2f) && context.performed)
+        {
+            anim.SetBool("jump", true);
+            jumpForce = jumpHeight;
+        }
+
+    }
+
     private void Start()
     {
         state = gameObject.GetComponent<PlayerStateMachine>();
         rb = gameObject.GetComponent<Rigidbody>();
         playerAction = gameObject.GetComponent<PlayerAction>();
+        anim = gameObject.GetComponent<Animator>();
         lookAt = Vector3.zero;
+        velocity = Vector3.zero;
     }
 
     private void FixedUpdate()
     {
         direction = new Vector3(inputDirection.x, 0, inputDirection.y);
-        rb.velocity = direction * speed * (1 - motionSmooth) + rb.velocity * motionSmooth;
-        if (rb.velocity.magnitude > 0.5f) lookAt = (transform.position + rb.velocity) * motionSmooth + lookAt * (1 - motionSmooth);
+        velocity = direction * speed * (1 - motionSmooth) + velocity * motionSmooth;
+        if (velocity.magnitude > 0.5f) lookAt = (transform.position + velocity) * motionSmooth + lookAt * (1 - motionSmooth);
         else if (state.currentState.stateIndex == 0 && playerAction.target != null)
         {
             lookAt = playerAction.target.transform.position * (1 - motionSmooth) + lookAt * motionSmooth;
-            lookAt.y = 0;
+            lookAt.y = transform.position.y;
         }
         if (playerAction.target != null || state.currentState.stateIndex == 1) transform.LookAt(lookAt);
+        
+        // debug ball, disable this line in actual game (or have some effect is cool too)
         debugLookAt.transform.position = lookAt;
+
+        if (jumpForce != 0)
+        {
+            velocity.y = jumpForce;
+            rb.velocity = velocity;
+            velocity.y = 0;
+            jumpForce = 0;
+        }
+        else rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+        
     }
 }
