@@ -7,13 +7,13 @@ public class PlayerAction : MonoBehaviour
     public GameObject target;
     public GameObject ArrowPrefab;
     public float projectileSpeed;
-    public float attackSpeed;
     public float attackCD;
 
     private GameObject projectile;
     private Animator anim;
 
     private bool is_airborne;
+    private float attackSpeed;
 
     public void Attack()
     {
@@ -27,6 +27,7 @@ public class PlayerAction : MonoBehaviour
             projectile.transform.parent = null;
             projectile.transform.position = gameObject.transform.position + Vector3.up;
             projectile.GetComponent<ArrowBehavior>().target = target;
+            projectile.GetComponent<ArrowBehavior>().attack = gameObject.GetComponent<EntityGeneric>().attack;
             projectile.GetComponent<Rigidbody>().velocity = (target.GetComponent<Transform>().position - Vector3.up - transform.position).normalized * projectileSpeed;
         }
         else if (is_airborne) attackCD = 50 / attackSpeed + 10;
@@ -34,6 +35,7 @@ public class PlayerAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        attackSpeed = gameObject.GetComponent<EntityGeneric>().attackSpeed;
         attackCD = 0;
         anim = gameObject.GetComponent<Animator>();
         anim.SetFloat("reflexes", attackSpeed * 1.1125f);

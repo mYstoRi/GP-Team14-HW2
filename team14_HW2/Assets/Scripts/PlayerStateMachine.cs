@@ -16,6 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
         public int stateIndex;
         public PlayerAction playerAction;
         public Animator animator;
+        public EntityGeneric stats;
         public abstract void EnterState();
         public abstract void DuringState();
         public abstract void ExitState();
@@ -30,7 +31,7 @@ public class PlayerStateMachine : MonoBehaviour
             // switch animation
             animator.SetBool("idle", true);
             
-            playerAction.attackCD = 50 / playerAction.attackSpeed + 10;
+            playerAction.attackCD = 50 / stats.attackSpeed + 10;
 
         }
         public override void DuringState()
@@ -94,6 +95,8 @@ public class PlayerStateMachine : MonoBehaviour
         emptyMoveState.playerAction = gameObject.GetComponent<PlayerAction>();
         emptyIdleState.animator = anim;
         emptyMoveState.animator = anim;
+        emptyIdleState.stats = gameObject.GetComponent<EntityGeneric>();
+        emptyMoveState.stats = gameObject.GetComponent<EntityGeneric>();
 
         SwitchState(emptyIdleState);
     }

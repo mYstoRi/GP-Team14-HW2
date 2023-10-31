@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float speed;
     public float motionSmooth;
     public float jumpHeight;
 
@@ -19,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 lookAt;
     private Vector3 velocity;
     private float jumpForce;
+    private float speed;
 
     public GameObject debugLookAt;
 
@@ -59,6 +59,7 @@ public class PlayerMove : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         lookAt = Vector3.zero;
         velocity = Vector3.zero;
+        speed = gameObject.GetComponent<EntityGeneric>().speed;
     }
 
     private void FixedUpdate()
