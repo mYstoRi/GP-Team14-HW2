@@ -29,7 +29,7 @@ public class TargetRangeDetect : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == target) target = null;
+        if (other.gameObject.Equals(target)) target = null;
     }
 
     // Update is called once per frame

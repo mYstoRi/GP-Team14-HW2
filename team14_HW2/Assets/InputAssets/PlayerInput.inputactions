@@ -15,13 +15,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "View",
-                    "type": "Value",
-                    "id": "6626700e-19f2-4688-948b-d69851d47580",
-                    "expectedControlType": "",
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "37782778-3490-4fe4-b87e-92a6a93d467f",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -82,12 +82,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b4aa68ca-b7bd-4d21-bb04-6c23b2955f90",
-                    "path": "<Mouse>/delta",
+                    "id": "8a3f24dc-90c8-4cfa-a8bc-e671f8de600e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "View",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
