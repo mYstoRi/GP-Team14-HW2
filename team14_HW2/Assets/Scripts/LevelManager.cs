@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
 
         fadeImage.GetComponent<Image>().color = new Color(0,0,0,1);
         task.allowSceneActivation = true;
-        //while(!task.isDone) yield return null; 
+        while(!task.isDone) yield return null; 
         fadeImage.GetComponent<Image>().color = new Color(0,0,0,0);
     }
     IEnumerator FadingInScene(AsyncOperation task)
