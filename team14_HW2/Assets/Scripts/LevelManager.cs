@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
         if(instance != null)
         {
             Destroy(gameObject);
+            Debug.Log("Delete duplicated LevelManager successfully!");
         }
         else
         {
@@ -35,7 +36,16 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(FadingOutScene(task));
     }
 
-    IEnumerator FadingOutScene(AsyncOperation task)
+    static public void LoadTestLevel() 
+    {
+        string loadedLevelName = "Scene1";
+        var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
+
+        task.allowSceneActivation = false;
+        instance.StartCoroutine(instance.FadingOutScene(task));
+    } 
+
+    public IEnumerator FadingOutScene(AsyncOperation task)
     {
         float progress = 0;
         while(progress <= 1)
@@ -50,7 +60,7 @@ public class LevelManager : MonoBehaviour
         while(!task.isDone) yield return null; 
         fadeImage.GetComponent<Image>().color = new Color(0,0,0,0);
     }
-    IEnumerator FadingInScene(AsyncOperation task)
+    public IEnumerator FadingInScene(AsyncOperation task)
     {
         float progress = 0;
         while(progress <= 1)
