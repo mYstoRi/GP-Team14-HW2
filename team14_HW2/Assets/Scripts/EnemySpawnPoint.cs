@@ -5,22 +5,38 @@ using UnityEngine;
 public class EnemySpawnPoint : MonoBehaviour
 {
     // One EnemySpawnPoint is responsable for spawning only One Type of Enemy
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefabs;
 
-    /* TODO:
+    public int weight = 1; // weight of spawning this spawner
+    public int weightChanges = 0; // how weight changes(+increase / -decrease) every spawn
+    public int miniumWeight = 1; // lower bound of weight  (negitive for not bounding)
+    public int maxiumWeight = -1; // lower bound of weight  (negitive for not bounding)
 
-    // this weight should affect [EnemySpawner]'s Randomness, higher weight -> higher rate of being chosen to spawn enemy, vise versa.
-    public int weight = 1; 
-
-    // change weight over time to make weak enemy spawn less over time.
-    public int weightChanges = 0;
-
-    */
-
+    void Start()
+    {
+        enemyPrefabs.RemoveAll(x => x==null); // remove null prefab;
+    }
 
     public void Spawn()
     {
-        Debug.Log("Spawn Called");
-        // Spawn Enemy here
+        if(enemyPrefabs.Count > 0)
+        {
+            UpdateWeight();
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], transform.position, Quaternion.identity, transform); // Spawn Enemy here
+        }
+        else Debug.LogWarning("Spawning a EnemySpawnPoint with no enemy prefab!");
+    }
+
+    void UpdateWeight()
+    {
+        weight += weightChanges; // update weight
+        if(miniumWeight >= 0f) // negitive for not bounding
+        {
+            weight = Mathf.Max(weight, miniumWeight);
+        }
+        else if(maxiumWeight >= 0f) // negitive for not bounding
+        {
+            weight = Mathf.Min(weight, maxiumWeight);
+        }
     }
 }

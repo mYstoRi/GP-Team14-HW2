@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -49,19 +50,24 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn(int count)
     {
+        int weightSum = enemySpawnPoints.Aggregate(0, (acc, nxt)=>(acc+nxt.weight));
         for(int i = 0; i < count; i++)
         {
-            // randomly pick a spawner and spawn the enemy bind to that spawnpoint
-            enemySpawnPoints[Random.Range(0, enemySpawnPoints.Count)].Spawn();
+            int idx, rnd = Random.Range(0, weightSum);
+            for(idx = 0; idx < enemySpawnPoints.Count && rnd > 0; idx++)
+            {
+                rnd -= enemySpawnPoints[idx].weight;
+            }
+            enemySpawnPoints[idx].Spawn();
         }
         timeUntilSpawn = spawnInterval; // update spawnTimeCounter
-        UpdateSpawnCount(spawnCountChanges);
-        UpdateSpawnInterval(spawnIntervalChanges);
+        UpdateSpawnCount();
+        UpdateSpawnInterval();
     }
 
-    void UpdateSpawnCount(int changes)
+    void UpdateSpawnCount()
     {
-        spawnCount += changes; // update spawnCount
+        spawnCount += spawnCountChanges; // update spawnCount
         if(miniumspawnCount >= 0f) // negitive for not bounding
         {
             spawnCount = Mathf.Max(spawnCount, miniumspawnCount);
@@ -72,9 +78,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void UpdateSpawnInterval(float changes)
+    void UpdateSpawnInterval()
     {
-        spawnInterval += changes; // update spawnInterval
+        spawnInterval += spawnIntervalChanges; // update spawnInterval
         if(miniumSpawnInterval >= 0f) // negitive for not bounding
         {
             spawnInterval = Mathf.Max(spawnInterval, miniumSpawnInterval);
