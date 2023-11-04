@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     private float jumpForce;
     private float speed;
 
-    public GameObject debugLookAt;
+    //public GameObject debugLookAt;
 
     public void Movement(InputAction.CallbackContext context)
     {
@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
         inputDirection = context.ReadValue<Vector2>();
 
         // switch state
-        if (inputDirection.Equals(Vector2.zero)) 
+        if (inputDirection.Equals(Vector2.zero))
         {
             if (state.currentState.stateIndex != 0) state.SwitchState(state.emptyIdleState);
         }
@@ -73,9 +73,9 @@ public class PlayerMove : MonoBehaviour
             lookAt.y = transform.position.y;
         }
         if (playerAction.target != null || state.currentState.stateIndex == 1) transform.LookAt(lookAt);
-        
+
         // debug ball, disable this line in actual game (or have some effect is cool too)
-        debugLookAt.transform.position = lookAt;
+        //debugLookAt.transform.position = lookAt;
 
         if (jumpForce != 0)
         {
@@ -85,6 +85,6 @@ public class PlayerMove : MonoBehaviour
             jumpForce = 0;
         }
         else rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
-        
+
     }
 }
