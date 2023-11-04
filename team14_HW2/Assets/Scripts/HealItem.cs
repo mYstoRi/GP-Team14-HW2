@@ -5,14 +5,19 @@ using UnityEngine;
 public class HealItem : MonoBehaviour
 {
     [SerializeField] private float Potency;
-    // [SerializeField] private ParticleSystem mainParticle; (maybe can add trigger animation later)
+    [SerializeField] private GameObject consumeParticle;
+
+    private GameObject prefab;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") 
         {
             // particles on trigger
-            // mainParticle.Emit(50);
+            prefab = Instantiate(consumeParticle);
+            prefab.transform.parent = other.transform;
+            prefab.transform.localPosition = Vector3.up * 0.5f;
+            Destroy(prefab, 2.0f);
             
             // play sound here
 
