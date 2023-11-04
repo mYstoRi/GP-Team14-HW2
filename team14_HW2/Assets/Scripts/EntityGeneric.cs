@@ -4,27 +4,69 @@ using UnityEngine;
 
 public class EntityGeneric : MonoBehaviour
 {
-    // public stats
-    public float health;
-    public float maxHealth;
+    #region PROPERTIES
+    public float Health
+    {
+        get
+        {
+            return health;
+        }
+        set
+        {
+            UpdateHealth(value);
+        }        
+    }
+    public float MaxHealth{ get{ return maxHealth; }}
+    #endregion
+
+    #region VARIABLES
+    
     public float speed;
     public float attack;
     public float attackSpeed;
+    [SerializeField] float maxHealth;
+    [SerializeField] float health;
+    #endregion
 
-    public void TakesDamage(float damage)
+    #region VIRTUAL METHODS
+    public virtual void TakesDamage(float damage)
     {
         // the entity takes damage
-        health -= damage;
-        if (DeathCheck()) Destroy(gameObject);
-        if (health > maxHealth) health = maxHealth;
+        Health -= damage;
     }
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+    public virtual void UpdateHealth(float newValue) 
+    {
+        if(newValue >= maxHealth)
+        {
+            health = maxHealth;
+        }
+        else if(newValue > 0)
+        {
+            health = newValue;
+        }
+        else if(newValue <= 0)
+        {
+            health = 0;
+            Die();
+        }
+    }
+    #endregion
+
+    #region METHODS
+    /* 
+    This function is done in the property "Health"
 
     public bool DeathCheck()
     {
         // detects if an entity would die
-        if (health <= 0) return true;
+        if (Health <= 0) return true;
         return false;
     }
+    */
 
     public void UpdateAnimation()
     {
@@ -43,4 +85,5 @@ public class EntityGeneric : MonoBehaviour
     {
         
     }
+    #endregion
 }
