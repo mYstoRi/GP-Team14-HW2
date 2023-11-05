@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image hpBar;
     [SerializeField] Image hpFullBar;
     [SerializeField] TextMeshProUGUI hpText;
-    [SerializeField] PlayerEntity playerEntity;
+    PlayerEntity playerEntity;
     void Awake() 
     {
         if(instance != null)
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     }
     void Init()
     {
+        playerEntity = FindObjectOfType<PlayerEntity>().GetComponent<PlayerEntity>();
         UpdateHpUI(playerEntity.Health, playerEntity.MaxHealth);
     }
 
