@@ -13,17 +13,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     private Animator anim;
 
-    public abstract class CharacterState
-    {
-        public int stateIndex;
-        public PlayerAction playerAction;
-        public Animator animator;
-        public EntityGeneric stats;
-        public abstract void EnterState();
-        public abstract void DuringState();
-        public abstract void ExitState();
-    }
-
     public class IdleState : CharacterState
     {
         public override void EnterState()
