@@ -2075,6 +2075,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DAmage
       objectReference: {fileID: 0}
+    - target: {fileID: 8622387746430855781, guid: 237ab98c89b061143ad54589b00735f5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622387746430855781, guid: 237ab98c89b061143ad54589b00735f5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.9074851
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622387746430855781, guid: 237ab98c89b061143ad54589b00735f5, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8622387746430855782, guid: 237ab98c89b061143ad54589b00735f5, type: 3}
       propertyPath: m_RootOrder
       value: 15
