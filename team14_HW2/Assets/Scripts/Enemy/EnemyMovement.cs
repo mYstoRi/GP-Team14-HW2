@@ -25,12 +25,24 @@ public class EnemyMovement : MonoBehaviour
 
     public float moveSpeed = 2f;
 
-    [Range(0f, Mathf.PI/2f)]
+    [Header("Approaching Angle")]
+    public bool randomizeApproachAngle = true;
+
+    [Range(-Mathf.PI/2f, Mathf.PI/2f)]
     public float approachAngle = 1f;
-
+    [Range(-Mathf.PI/2f, 0)]
+    public float miniumApproachAngle = -Mathf.PI/4f;
+    [Range(0, Mathf.PI/2f)]
+    public float maxiumApproachAngle = Mathf.PI/4f;
+    /*
     [Range(0f, 1f)]
-    public float flipApproachAngleChance = .5f;
+    public float flipApproachAngleChance = .1f; // randomly flip its approach angle?? maybe??
+    */
 
+    void Start()
+    {
+        if(randomizeApproachAngle) approachAngle = Random.Range(miniumApproachAngle, maxiumApproachAngle);
+    }
 
     void Update()
     {
