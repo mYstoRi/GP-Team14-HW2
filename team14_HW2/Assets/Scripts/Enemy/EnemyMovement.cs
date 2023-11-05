@@ -30,10 +30,13 @@ public class EnemyMovement : MonoBehaviour
 
     [Range(-Mathf.PI/2f, Mathf.PI/2f)]
     public float approachAngle = 1f;
+
     [Range(-Mathf.PI/2f, 0)]
     public float miniumApproachAngle = -Mathf.PI/4f;
+
     [Range(0, Mathf.PI/2f)]
     public float maxiumApproachAngle = Mathf.PI/4f;
+
     /*
     [Range(0f, 1f)]
     public float flipApproachAngleChance = .1f; // randomly flip its approach angle?? maybe??
@@ -123,7 +126,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = approachingTarget.transform.position - transform.position;
 
         // angular approach
-        Vector3 __approachAngle = approachingTarget.CompareTag("Enemy")?0:approachAngle; // if is gathering towards another enemy, just go straight
+        float __approachAngle = approachingTarget.CompareTag("Enemy")?0:approachAngle; // if is gathering towards another enemy, just go straight
         Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1));
         transform.position = transform.position + approachDirection.normalized*moveSpeed*Time.deltaTime;
 
