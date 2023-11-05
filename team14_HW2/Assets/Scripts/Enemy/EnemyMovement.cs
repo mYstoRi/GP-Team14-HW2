@@ -71,7 +71,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-    private Vector3 CalculateApproachVector()
+    private Vector3 CalculateApproachVector(float __approachAngle)
     {
         // step.1: distance of A, C = L, L*sin(theta)*cos(theta)=movement
         // step.2: (c_y - a_y)/(c_x - a_x)= m_1
@@ -89,12 +89,12 @@ public class EnemyMovement : MonoBehaviour
         Vector3 C = approachingTarget.transform.position;
         Vector3 AC = C-A;
 
-        float per = Mathf.Pow(AC.magnitude*Mathf.Sin(approachAngle), 2f) / AC.magnitude;
+        float per = Mathf.Pow(AC.magnitude*Mathf.Sin(__approachAngle), 2f) / AC.magnitude;
         Vector3 K = new Vector3(C.x + ((AC.magnitude-per)/AC.magnitude)*(A.x-C.x), 0f, C.z + ((AC.magnitude-per)/AC.magnitude)*(A.z-C.z));
 
         if(AC.z == 0 || AC.x == 0) return Vector3.zero;
         float m_KB = -AC.x/AC.z;
-        float L_KB = AC.magnitude*Mathf.Sin(approachAngle)*Mathf.Cos(approachAngle);
+        float L_KB = AC.magnitude*Mathf.Sin(__approachAngle)*Mathf.Cos(__approachAngle);
         Vector3 KB = new Vector3(L_KB/Mathf.Sqrt(Mathf.Pow(m_KB, 2f)+1f), 0f, Mathf.Sqrt(Mathf.Pow(L_KB, 2f) * Mathf.Pow(m_KB, 2f) / (Mathf.Pow(m_KB, 2f)+1)));
 
         Vector3 B1 = K + KB;
@@ -110,7 +110,9 @@ public class EnemyMovement : MonoBehaviour
         if(!approachingTarget) return;
         Vector3 direction = approachingTarget.transform.position - transform.position;
 
-        Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(), new Vector3(1, 0, 1));
+        // angular approach
+        Vector3 __approachAngle = approachingTarget.CompareTag("Enemy")?0:approachAngle; // if is gathering towards another enemy, just go straight
+        Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1));
         transform.position = transform.position + approachDirection.normalized*moveSpeed*Time.deltaTime;
 
         // rotate to look at the moving direction smoothly
