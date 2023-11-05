@@ -3022,6 +3022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkullsInSombreros2.0 Variant 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3449359459303906845, guid: f7f9fd66410676d48a782efaa8727dbb, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7f9fd66410676d48a782efaa8727dbb, type: 3}
 --- !u!1001 &935750801

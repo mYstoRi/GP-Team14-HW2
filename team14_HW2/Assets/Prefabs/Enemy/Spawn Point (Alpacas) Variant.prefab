@@ -103,5 +103,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Point (Alpacas) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 287918268263826526, guid: d11a650811d6ffb418e934b5d748ee1e, type: 3}
+      propertyPath: m_TagString
+      value: EnemySpawnPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d11a650811d6ffb418e934b5d748ee1e, type: 3}
