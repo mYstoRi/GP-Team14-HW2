@@ -6,7 +6,12 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    struct LevelInfo
+    {
+        public float PlayerHp;
+    }
     [SerializeField] Image fadeImage;
+    LevelInfo levelInfo;
     public static LevelManager instance;
     void Awake() 
     {
@@ -29,11 +34,12 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
+        SaveInfo();
         string loadedLevelName = "Level_" + level;
         var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
 
         task.allowSceneActivation = false;
-        StartCoroutine(FadingOutScene(task));
+        StartCoroutine(LoadNewLevelCoroutine(task));
     }
 
     static public void LoadTestLevel() 
@@ -45,6 +51,36 @@ public class LevelManager : MonoBehaviour
         instance.StartCoroutine(instance.FadingOutScene(task));
     } 
 
+    public void SaveInfo()
+    {
+        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>().GetComponent<PlayerEntity>();
+        if(!playerEntity)
+        {
+            Debug.LogError("Cannot Find Player!");
+            return;
+        }
+
+        levelInfo.PlayerHp = playerEntity.Health;
+    }
+    
+    public void SetUpInNewLevel()
+    {
+        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>().GetComponent<PlayerEntity>();
+        if(!playerEntity)
+        {
+            Debug.LogError("Cannot Find Player!");
+            return;
+        }
+
+        playerEntity.Health = levelInfo.PlayerHp;
+    }
+
+    #region COROUTINES
+    IEnumerator LoadNewLevelCoroutine(AsyncOperation task)
+    {
+        yield return StartCoroutine(FadingOutScene(task));
+        SetUpInNewLevel();
+    }
     public IEnumerator FadingOutScene(AsyncOperation task)
     {
         float progress = 0;
@@ -73,4 +109,5 @@ public class LevelManager : MonoBehaviour
         fadeImage.GetComponent<Image>().color = new Color(0,0,0,1);
         task.allowSceneActivation = true;
     }
+    #endregion
 }

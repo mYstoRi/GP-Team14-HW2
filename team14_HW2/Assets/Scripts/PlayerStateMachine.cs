@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This is not a good way to implement: can use way more modern stuff.
+
 public class PlayerStateMachine : MonoBehaviour
 {
     public CharacterState currentState;
