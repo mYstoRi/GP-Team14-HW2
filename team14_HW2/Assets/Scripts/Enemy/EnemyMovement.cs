@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Behavior2Player Options")]
     // for mages that will try to keep a distance with the player
     // and to deny enemy from bumping into player (over coliding)
-    public float closestDistance2Player = 1f;
+    public float closestDistance2Player = 4f;
 
 
     [Header("Movement Options")]
@@ -25,27 +25,17 @@ public class EnemyMovement : MonoBehaviour
 
     public float moveSpeed = 2f;
 
-    [Header("Approaching Angle")]
-    public bool randomizeApproachAngle = true;
 
-    [Range(-Mathf.PI/2f, Mathf.PI/2f)]
+    [Header("Approaching Options")]
+    public bool angularApproachEnabled = true;
+
+    [Range(Mathf.PI/4f, Mathf.PI/3f)]
     public float approachAngle = 1f;
 
-    [Range(-Mathf.PI/2f, 0)]
-    public float miniumApproachAngle = -Mathf.PI/4f;
-
-    [Range(0, Mathf.PI/2f)]
-    public float maxiumApproachAngle = Mathf.PI/4f;
-
-    /*
     [Range(0f, 1f)]
-    public float flipApproachAngleChance = .1f; // randomly flip its approach angle?? maybe??
-    */
+    public float flipApproachAngleChance = .99f;
+    public bool approachAngleFliped = false;
 
-    void Start()
-    {
-        if(randomizeApproachAngle) approachAngle = Random.Range(miniumApproachAngle, maxiumApproachAngle);
-    }
 
     void Update()
     {
@@ -55,6 +45,7 @@ public class EnemyMovement : MonoBehaviour
     void FixedUpdate()
     {
         UpdateApproachingTarget();
+        if(Random.Range(0f, 1f) > flipApproachAngleChance) approachAngleFliped = !approachAngleFliped;
     }
 
 
@@ -104,6 +95,8 @@ public class EnemyMovement : MonoBehaviour
         Vector3 C = approachingTarget.transform.position;
         Vector3 AC = C-A;
 
+        if(__approachAngle == 0f) return AC;
+
         float per = Mathf.Pow(AC.magnitude*Mathf.Sin(__approachAngle), 2f) / AC.magnitude;
         Vector3 K = new Vector3(C.x + ((AC.magnitude-per)/AC.magnitude)*(A.x-C.x), 0f, C.z + ((AC.magnitude-per)/AC.magnitude)*(A.z-C.z));
 
@@ -115,8 +108,8 @@ public class EnemyMovement : MonoBehaviour
         Vector3 B1 = K + KB;
         Vector3 B2 = K - KB;
 
-        if((C.x-B1.x)*(A.z-B1.z) > (C.z-B1.z)*(A.x-B1.x)) return B1-A;
-        if((C.x-B2.x)*(A.z-B2.z) > (C.z-B2.z)*(A.x-B2.x)) return B2-A;
+        if((C.x-B1.x)*(A.z-B1.z) > (C.z-B1.z)*(A.x-B1.x)) return (approachAngleFliped?B2:B1)-A;
+        if((C.x-B2.x)*(A.z-B2.z) > (C.z-B2.z)*(A.x-B2.x)) return (approachAngleFliped?B1:B2)-A;
         return Vector3.zero;
     }
 
@@ -125,10 +118,14 @@ public class EnemyMovement : MonoBehaviour
         if(!approachingTarget) return;
         Vector3 direction = approachingTarget.transform.position - transform.position;
 
-        // angular approach
-        float __approachAngle = approachingTarget.CompareTag("Enemy")?0:approachAngle; // if is gathering towards another enemy, just go straight
+        float __approachAngle = (approachingTarget.CompareTag("Enemy")||!angularApproachEnabled)?0f:approachAngle;
         Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1));
         transform.position = transform.position + approachDirection.normalized*moveSpeed*Time.deltaTime;
+        if(Vector3.Distance(transform.position, approachingTarget.transform.position) < closestDistance2Player)
+        {
+            Vector3 fixingDirection = Vector3.Scale(transform.position-approachingTarget.transform.position, new Vector3(1, 0, 1));
+            transform.position = approachingTarget.transform.position + fixingDirection.normalized*closestDistance2Player;
+        }
 
         // rotate to look at the moving direction smoothly
         Quaternion lookRotation = Quaternion.LookRotation(direction);
