@@ -18,7 +18,7 @@ public class TargetRangeDetect : MonoBehaviour
     {
         if (target == null || Vector3.Distance(other.transform.position, player.transform.position) < Vector3.Distance(target.transform.position, player.transform.position))
         {
-            if (other.tag == "enemy")
+            if ( other.TryGetComponent(out EnemyEntity enemy) && !enemy.IsDied)
             {
                 player.GetComponent<PlayerAction>().target = other.gameObject;
                 target = other.gameObject;
