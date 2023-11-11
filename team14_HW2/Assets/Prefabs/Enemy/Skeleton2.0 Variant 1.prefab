@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton2.0 Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1560985664168699226, guid: 0d198b5e1a1fd1441b5f6cd71635b434, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2590385520351008585, guid: 0d198b5e1a1fd1441b5f6cd71635b434, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -67,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86ded97b81034354688bf0bb8e9206a3, type: 2}
+    - target: {fileID: 5582464804809013811, guid: 0d198b5e1a1fd1441b5f6cd71635b434, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ced481ebf71952b40a3e4bf464c52e80, type: 2}
     - target: {fileID: 5682533145302617289, guid: 0d198b5e1a1fd1441b5f6cd71635b434, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -102,6 +110,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-8946906694467320643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469948879798939355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  maxHealth: 100
+  health: 100
 --- !u!114 &4228048380458536537
 MonoBehaviour:
   m_ObjectHideFlags: 0

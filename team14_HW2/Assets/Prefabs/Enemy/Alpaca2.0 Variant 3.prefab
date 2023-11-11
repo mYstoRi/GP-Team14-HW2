@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alpaca2.0 Variant 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3125948849166208519, guid: 739ef82142b185441977ca59f46ccccf, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3482616775065558310, guid: 739ef82142b185441977ca59f46ccccf, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.288031
@@ -763,6 +767,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0045750947
       objectReference: {fileID: 0}
+    - target: {fileID: 8336378362282217838, guid: 739ef82142b185441977ca59f46ccccf, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c4ff78c7c33ec05488f0e6239ff521d0, type: 2}
     - target: {fileID: 8348040371246562749, guid: 739ef82142b185441977ca59f46ccccf, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.99999994
@@ -904,3 +912,20 @@ MonoBehaviour:
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+--- !u!114 &421229217022226377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8867147920742105426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  maxHealth: 100
+  health: 100

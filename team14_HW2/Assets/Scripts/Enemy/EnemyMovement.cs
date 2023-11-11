@@ -115,7 +115,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void ApproachTarget()
     {
-        if(!approachingTarget) return;
+        if(!approachingTarget) 
+        {
+            GetComponent<Animator>().SetBool("isMoving", false);
+            return;
+        }
+        else GetComponent<Animator>().SetBool("isMoving", true);
+
         Vector3 direction = approachingTarget.transform.position - transform.position;
 
         float __approachAngle = (approachingTarget.CompareTag("Enemy")||!angularApproachEnabled)?0f:approachAngle;
