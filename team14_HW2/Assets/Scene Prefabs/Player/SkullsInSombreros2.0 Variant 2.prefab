@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 285195809090401608, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 433045707929643308, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
       propertyPath: m_Name
       value: SkullsInSombreros2.0 Variant 2
