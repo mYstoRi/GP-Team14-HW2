@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880867460885291039}
-  m_LocalRotation: {x: 0.022455519, y: 0.07304395, z: -0.0016450522, w: 0.99707454}
+  m_LocalRotation: {x: -0.21413043, y: 0.44529662, z: 0.11057286, w: 0.86234146}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 1.4, z: -3.03}
+  m_FollowOffset: {x: 0, y: 0.3, z: -1.42}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -229,7 +229,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880867461772947295}
-  m_LocalRotation: {x: 0.068774804, y: 0.07288853, z: -0.0050383215, w: 0.9949532}
+  m_LocalRotation: {x: -0.17381775, y: 0.4499547, z: 0.08975615, w: 0.87136215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -307,7 +307,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880867462010512875}
-  m_LocalRotation: {x: 0.036367856, y: 0.07301387, z: -0.0026642457, w: 0.9966641}
+  m_LocalRotation: {x: -0.2231353, y: 0.44411606, z: 0.11522278, w: 0.8600554}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
-    m_InvertInput: 1
+    m_InvertInput: 0
     m_MinValue: -180
     m_MaxValue: 180
     m_Wrap: 1
@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 1.4, z: -3.03}
+  m_FollowOffset: {x: 0, y: 0.3, z: -1.42}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 1.4, z: -3.03}
+  m_FollowOffset: {x: 0, y: 0.3, z: -1.42}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
