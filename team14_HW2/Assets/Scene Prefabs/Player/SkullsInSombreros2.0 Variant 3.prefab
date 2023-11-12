@@ -91,6 +91,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8699600386686492996, guid: a62d38a805b34554886cd117086db24c, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 9028719586545548576, guid: a62d38a805b34554886cd117086db24c, type: 3}
       propertyPath: m_Name
       value: SkullsInSombreros2.0 Variant 3
