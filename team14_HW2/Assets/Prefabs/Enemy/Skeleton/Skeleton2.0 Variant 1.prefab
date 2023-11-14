@@ -127,6 +127,7 @@ MonoBehaviour:
   attackSpeed: 0
   maxHealth: 100
   health: 100
+  IsDied: 0
 --- !u!114 &4228048380458536537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,10 +143,19 @@ MonoBehaviour:
   enemyGatheringEnabled: 0
   enemyGatherDistance: 50
   enemyGroupDistance: 10
-  closestDistance2Player: 4
+  closestDistance2Player: 1
   turnSpeed: 1
   moveSpeed: 2
-  angularApproachEnabled: 1
+  angularApproachEnabled: 0
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+  meleeAttackEnabled: 1
+  meleeAttackRange: 2
+  meleeAttackDamage: 5
+  meleeAttackCooldown: 3
+  projectilePrefabs: []
+  projectileOrigin: {fileID: 0}
+  projectileAttackEnabled: 0
+  projectileAttackRange: 16
+  projectileAttackCooldown: 3

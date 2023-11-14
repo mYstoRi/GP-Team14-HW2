@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7028611023839938630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 826767551484256718}
+  m_Layer: 0
+  m_Name: ProjectileOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &826767551484256718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7028611023839938630}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 254918881037034209}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3197241728166358552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,6 +648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa86c6d9aba9c0f499fdd56d982d3a1d, type: 3}
+--- !u!4 &254918881037034209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3447300139527032057, guid: aa86c6d9aba9c0f499fdd56d982d3a1d, type: 3}
+  m_PrefabInstance: {fileID: 3197241728166358552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3878442088271335666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1840878159256305386, guid: aa86c6d9aba9c0f499fdd56d982d3a1d, type: 3}
@@ -653,10 +689,20 @@ MonoBehaviour:
   enemyGatheringEnabled: 0
   enemyGatherDistance: 50
   enemyGroupDistance: 10
-  closestDistance2Player: 4
+  closestDistance2Player: 1
   turnSpeed: 1
   moveSpeed: 2
   angularApproachEnabled: 1
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+  meleeAttackEnabled: 1
+  meleeAttackRange: 2
+  meleeAttackDamage: 5
+  meleeAttackCooldown: 3
+  projectilePrefabs:
+  - {fileID: 3107941154959935941, guid: 3e8660f000096bc41a23a74be0587e48, type: 3}
+  projectileOrigin: {fileID: 826767551484256718}
+  projectileAttackEnabled: 1
+  projectileAttackRange: 16
+  projectileAttackCooldown: 3
