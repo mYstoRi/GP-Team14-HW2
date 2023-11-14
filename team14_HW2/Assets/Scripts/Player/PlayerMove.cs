@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DisallowMultipleComponent]
 public class PlayerMove : MonoBehaviour
 {
     public float motionSmooth;
@@ -20,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     private float jumpForce;
     private float speed;
 
-    //public GameObject debugLookAt;
+    [SerializeField] private GameObject debugLookAt;
 
     public void Movement(InputAction.CallbackContext context)
     {
@@ -36,8 +37,6 @@ public class PlayerMove : MonoBehaviour
         {
             if (state.currentState.stateIndex != 1) state.SwitchState(state.emptyMoveState);
         }
-
-        // rotate (haven't implement)
 
     }
 
@@ -75,7 +74,7 @@ public class PlayerMove : MonoBehaviour
         if (playerAction.target != null || state.currentState.stateIndex == 1) transform.LookAt(lookAt);
 
         // debug ball, disable this line in actual game (or have some effect is cool too)
-        //debugLookAt.transform.position = lookAt;
+        if(debugLookAt != null) debugLookAt.transform.position = lookAt;
 
         if (jumpForce != 0)
         {

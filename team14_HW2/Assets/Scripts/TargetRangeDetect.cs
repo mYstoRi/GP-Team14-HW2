@@ -8,7 +8,7 @@ public class TargetRangeDetect : MonoBehaviour
     private GameObject player;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = gameObject.transform.parent.gameObject;
         target = player.GetComponent<PlayerAction>().target;
@@ -16,9 +16,15 @@ public class TargetRangeDetect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (target != null && target.TryGetComponent(out EnemyEntity targetEE) && targetEE.IsDied)
+        {
+            player.GetComponent<PlayerAction>().target = null;
+            target = null;
+        }
+
         if (target == null || Vector3.Distance(other.transform.position, player.transform.position) < Vector3.Distance(target.transform.position, player.transform.position))
         {
-            if (other.tag == "enemy")
+            if ( other.TryGetComponent(out EnemyEntity enemy) && !enemy.IsDied)
             {
                 player.GetComponent<PlayerAction>().target = other.gameObject;
                 target = other.gameObject;

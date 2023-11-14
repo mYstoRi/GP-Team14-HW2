@@ -26,13 +26,14 @@ public class EntityGeneric : MonoBehaviour
     public float attackSpeed;
     [SerializeField] float maxHealth;
     [SerializeField] float health;
+    public bool IsDied;
     #endregion
 
     #region VIRTUAL METHODS
     public virtual void TakesDamage(float damage)
     {
         // the entity takes damage
-        Health -= damage;
+        UpdateHealth(health - damage);
     }
     public virtual void Die()
     {
@@ -51,7 +52,7 @@ public class EntityGeneric : MonoBehaviour
         else if(newValue <= 0)
         {
             health = 0;
-            Die();
+            if (!IsDied) Die();
         }
     }
     #endregion

@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 657568102793974157, guid: f9e23e59ed504e245b86af511dfd99e4, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 925316420324920809, guid: f9e23e59ed504e245b86af511dfd99e4, type: 3}
       propertyPath: m_Name
       value: SkullsInSombreros2.0 Variant 1

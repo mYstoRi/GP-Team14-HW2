@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class PlayerAction : MonoBehaviour
 {
     public GameObject target;
@@ -17,6 +18,8 @@ public class PlayerAction : MonoBehaviour
 
     public void Attack()
     {
+        if(target.TryGetComponent(out EnemyEntity enemy) && enemy.IsDied) return;
+
         is_airborne = !Physics.Raycast(transform.position, Vector3.down, 0.2f);
 
         if (attackCD <= 0 && !is_airborne)
