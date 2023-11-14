@@ -509,6 +509,10 @@ PrefabInstance:
       value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 6797366378739129055, guid: 8bda2b229956441329797aa7bc0d180f, type: 3}
+      propertyPath: m_text
+      value: Pew Pew Skull
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797366378739129055, guid: 8bda2b229956441329797aa7bc0d180f, type: 3}
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
