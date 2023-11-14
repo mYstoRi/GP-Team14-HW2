@@ -7,26 +7,26 @@ public class EnemyMovement : MonoBehaviour
     private GameObject approachingTarget = null;
 
 
-    [Header("Gathering Options")]
+    [Header("~~Gathering Options~~")]
     public bool enemyGatheringEnabled = false;
 
     public float enemyGatherDistance = 50f; // how close to another enemy will them start gathering up as a group
 
     public float enemyGroupDistance = 10f; // how close to another enemy is defined as grouped
 
-    [Header("Behavior2Player Options")]
+    [Header("~~Behavior2Player Options~~")]
     // for mages that will try to keep a distance with the player
     // and to deny enemy from bumping into player (over coliding)
     public float closestDistance2Player = 4f;
 
 
-    [Header("Movement Options")]
+    [Header("~~Movement Options~~")]
     public float turnSpeed = 1f;
 
     public float moveSpeed = 2f;
 
 
-    [Header("Approaching Options")]
+    [Header("~~Approaching Options~~")]
     public bool angularApproachEnabled = true;
 
     [Range(Mathf.PI/4f, Mathf.PI/3f)]
@@ -36,6 +36,27 @@ public class EnemyMovement : MonoBehaviour
     public float flipApproachAngleChance = .99f;
     public bool approachAngleFliped = false;
 
+
+    [Header("~~Melee Attack Options~~")]
+    public bool meleeAttackEnabled = true;
+    public float meleeAttackRange = 2f;
+    public int meleeAttackDamage = 5;
+    public float meleeAttackCooldown = 3f;
+
+
+    [Header("~~Projectile Attack Options~~")]
+    public List<GameObject> projectilePrefabs;
+    public Transform projectileOrigin = null;
+    public bool projectileAttackEnabled = true;
+    public float projectileAttackRange = 16f;
+    public float projectileAttackCooldown = 3f;
+
+
+    void Start()
+    {
+        StartCoroutine(MeleeAttackCoroutine());
+        StartCoroutine(ProjectileAttackCoroutine());
+    }
 
     void Update()
     {
@@ -75,7 +96,6 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-
 
     private Vector3 CalculateApproachVector(float __approachAngle)
     {
@@ -137,5 +157,42 @@ public class EnemyMovement : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         lookRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lookRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, turnSpeed * Time.deltaTime);
+    }
+
+
+    // Melee Attack
+    IEnumerator MeleeAttackCoroutine()
+    {
+        while(true)
+        {
+            if(meleeAttackEnabled && approachingTarget && approachingTarget.CompareTag("Player"))
+            {
+                if(Vector3.Distance(approachingTarget.transform.position, transform.position) <= meleeAttackRange)
+                {
+                    PlayerEntity playerEntity = approachingTarget.GetComponent<PlayerEntity>();
+                    playerEntity.TakesDamage(meleeAttackDamage);
+                }
+            }
+            yield return new WaitForSeconds(meleeAttackCooldown);
+        }
+    }
+
+
+    // Projectile Attack
+    IEnumerator ProjectileAttackCoroutine()
+    {
+        while(true)
+        {
+            if(projectileOrigin && projectileAttackEnabled && projectilePrefabs.Count>0 && approachingTarget && approachingTarget.CompareTag("Player"))
+            {
+                Vector3 projectDirection = approachingTarget.transform.position - projectileOrigin.position;
+                if(projectDirection.magnitude <= projectileAttackRange)
+                {
+                    GameObject projectile = Instantiate(projectilePrefabs[Random.Range(0, projectilePrefabs.Count)], projectileOrigin.position, Quaternion.identity, projectileOrigin);
+                    projectile.GetComponent<EnemyProjectile>().SetDirection(projectDirection);
+                }
+            }
+            yield return new WaitForSeconds(projectileAttackCooldown);
+        }
     }
 }
