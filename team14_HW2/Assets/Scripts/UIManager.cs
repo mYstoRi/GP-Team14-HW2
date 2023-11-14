@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image hpBar;
     [SerializeField] Image hpFullBar;
     [SerializeField] TextMeshProUGUI hpText;
+    [SerializeField] TextMeshProUGUI timerText;
     PlayerEntity playerEntity;
     void Awake() 
     {
@@ -37,5 +38,9 @@ public class UIManager : MonoBehaviour
 
         HpBar_rect.sizeDelta = new Vector2(hpFullBar_rect.rect.width * ratio, hpFullBar_rect.rect.height);
         hpText.text = currentVal + "/" + maxVal;
+    }
+    public void UpdateTimerUI(float time)
+    {
+        timerText.text = "Time: " + (int)(time / 60) + ":" + (int)(time % 60);
     }
 }

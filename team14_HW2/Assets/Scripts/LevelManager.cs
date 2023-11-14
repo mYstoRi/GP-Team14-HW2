@@ -8,10 +8,13 @@ public class LevelManager : MonoBehaviour
 {
     struct LevelInfo
     {
+        public bool isInitialized;
         public float PlayerHp;
+        public float Timer;
     }
     [SerializeField] Image fadeImage;
-    LevelInfo levelInfo;
+    LevelInfo levelInfo = new ();
+    bool isLoading = false;
     public static LevelManager instance;
     void Awake() 
     {
@@ -26,14 +29,32 @@ public class LevelManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+    void Start()
+    {
+        levelInfo.isInitialized = false;
+        SaveInfo();
+    }
+    public void ReloadCurrentLevel()
+    {
+        if(isLoading) return;
+
+        isLoading = true;
+        string loadedLevelName = SceneManager.GetActiveScene().name;
+        var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
+
+        task.allowSceneActivation = false;
+        StartCoroutine(LoadNewLevelCoroutine(task));
+    }
     public void LoadLevel(int level)
     {
         if(level < 1 || level > 3) // We only have level 1~3
         {
-            Debug.LogError("Level " + level + " does not exist!"); 
+            Debug.LogError("Level_ " + level + " does not exist!"); 
             return;
         }
+        else if(isLoading) return;
 
+        isLoading = true;
         SaveInfo();
         string loadedLevelName = "Level_" + level;
         var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
@@ -53,14 +74,16 @@ public class LevelManager : MonoBehaviour
 
     public void SaveInfo()
     {
-        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>().GetComponent<PlayerEntity>();
+        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>()?.GetComponent<PlayerEntity>();
         if(!playerEntity)
         {
             Debug.LogError("Cannot Find Player!");
             return;
         }
-
+        else levelInfo.isInitialized = true;
+        
         levelInfo.PlayerHp = playerEntity.Health;
+        levelInfo.Timer = playerEntity.SurviveTimer;
     }
     
     public void SetUpInNewLevel()
@@ -72,7 +95,16 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        playerEntity.Health = levelInfo.PlayerHp;
+        if(!levelInfo.isInitialized)
+        {
+            SaveInfo();
+            levelInfo.isInitialized = true;
+        }
+        else
+        {
+            playerEntity.Health = levelInfo.PlayerHp;
+            playerEntity.SurviveTimer = levelInfo.Timer ;
+        }
     }
 
     #region COROUTINES
@@ -80,6 +112,7 @@ public class LevelManager : MonoBehaviour
     {
         yield return StartCoroutine(FadingOutScene(task));
         SetUpInNewLevel();
+        isLoading = false;
     }
     public IEnumerator FadingOutScene(AsyncOperation task)
     {
