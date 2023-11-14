@@ -4253,6 +4253,7 @@ MonoBehaviour:
   attackSpeed: 2
   maxHealth: 100
   health: 100
+  enableTestingHp: 0
 --- !u!54 &6794374505050533551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4267,7 +4268,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &7546418759020720545
 GameObject:

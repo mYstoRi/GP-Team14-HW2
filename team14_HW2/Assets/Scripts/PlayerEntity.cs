@@ -11,9 +11,11 @@ public class PlayerEntity : EntityGeneric
     }
 
     // Test for taking damage , will be deleted later
+    [SerializeField] bool enableTestingHp = false;
     float test = 1;
     private void Update() 
-    {
+    {   
+        if(!enableTestingHp) return;
         if(test <= 0)
         {
             TakesDamage(1);
