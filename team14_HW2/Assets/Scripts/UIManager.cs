@@ -41,6 +41,14 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateTimerUI(float time)
     {
-        timerText.text = "Time: " + (int)(time / 60) + ":" + (int)(time % 60);
+        timerText.text = "Time: " + ShowNumber((int)(time / 60)) + ":" + ShowNumber((int)(time % 60));
+    }
+    string ShowNumber(int num)
+    {
+        if( (int)(num/10) == 0 )
+        {
+            return "0" + num;
+        }
+        else return num.ToString();
     }
 }
