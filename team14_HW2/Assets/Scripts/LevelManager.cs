@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class LevelManager : MonoBehaviour
         public float PlayerHp;
         public float Timer;
     }
+
+    public PlayerEntity Player { get { return FindObjectOfType<PlayerEntity>()?.GetComponent<PlayerEntity>(); } }
     [SerializeField] Image fadeImage;
     LevelInfo levelInfo = new ();
     bool isLoading = false;
@@ -32,84 +35,102 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         levelInfo.isInitialized = false;
-        SaveInfo();
+        SavePlayerInfo();
+    }
+    
+    public void SavePlayerInfo()
+    {
+        if(!Player)
+        {
+            Debug.Log("Cannot Find Player!");
+            return;
+        }
+        else levelInfo.isInitialized = true;
+        
+        levelInfo.PlayerHp = Player.Health;
+        levelInfo.Timer = Player.SurviveTimer;
+    }
+    void SaveTimerInfo()
+    {
+        if(!Player)
+        {
+            Debug.Log("Cannot Find Player!");
+            return;
+        }
+        
+        levelInfo.Timer = Player.SurviveTimer;
+    }
+    public void SetUpInNewLevel()
+    {
+        if(!Player)
+        {
+            Debug.Log("Cannot Find Player!");
+            return;
+        }
+
+        if(!levelInfo.isInitialized)
+        {
+            SavePlayerInfo();
+            levelInfo.isInitialized = true;
+        }
+        else
+        {
+            Player.Health = levelInfo.PlayerHp;
+            Player.SurviveTimer = levelInfo.Timer ;
+        }
+    }
+    #region #LOAD_SCENE_METHODS
+    public void GameOver()
+    {
+        Debug.Log("Gameover");
+        levelInfo.isInitialized = false;
+        LoadScene("GameOver", 0.1f);
+    }
+    static public void LoadMainMenu()
+    {
+        LoadScene("MainMenu", 0.2f);
     }
     public void ReloadCurrentLevel()
     {
         if(isLoading) return;
 
-        isLoading = true;
-        string loadedLevelName = SceneManager.GetActiveScene().name;
-        var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
+        SaveTimerInfo();
 
-        task.allowSceneActivation = false;
-        StartCoroutine(LoadNewLevelCoroutine(task));
+        string loadedLevelName = SceneManager.GetActiveScene().name;
+        LoadScene(loadedLevelName, 0.5f);
     }
-    public void LoadLevel(int level)
+    static public void LoadLevel(int level)
     {
         if(level < 1 || level > 3) // We only have level 1~3
         {
             Debug.LogError("Level_ " + level + " does not exist!"); 
             return;
         }
-        else if(isLoading) return;
+        else if(instance.isLoading) return;
 
-        isLoading = true;
-        SaveInfo();
+        instance.SavePlayerInfo();
+
         string loadedLevelName = "Level_" + level;
-        var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
-
-        task.allowSceneActivation = false;
-        StartCoroutine(LoadNewLevelCoroutine(task));
+        LoadScene(loadedLevelName, 0.5f);
     }
 
-    static public void LoadTestLevel() 
+    static public void LoadScene(string sceneName, float delay) 
     {
-        string loadedLevelName = "Scene1";
-        var task = SceneManager.LoadSceneAsync(loadedLevelName, LoadSceneMode.Single);
+        if(instance.isLoading) return;
+
+        instance.isLoading = true;
+        var task = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.allowSceneActivation = false;
-        instance.StartCoroutine(instance.FadingOutScene(task));
+        instance.StartCoroutine(instance.LoadNewLevelCoroutine(task, delay));
     } 
-
-    public void SaveInfo()
-    {
-        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>()?.GetComponent<PlayerEntity>();
-        if(!playerEntity)
-        {
-            Debug.LogError("Cannot Find Player!");
-            return;
-        }
-        else levelInfo.isInitialized = true;
-        
-        levelInfo.PlayerHp = playerEntity.Health;
-        levelInfo.Timer = playerEntity.SurviveTimer;
-    }
-    
-    public void SetUpInNewLevel()
-    {
-        PlayerEntity playerEntity = FindObjectOfType<PlayerEntity>().GetComponent<PlayerEntity>();
-        if(!playerEntity)
-        {
-            Debug.LogError("Cannot Find Player!");
-            return;
-        }
-
-        if(!levelInfo.isInitialized)
-        {
-            SaveInfo();
-            levelInfo.isInitialized = true;
-        }
-        else
-        {
-            playerEntity.Health = levelInfo.PlayerHp;
-            playerEntity.SurviveTimer = levelInfo.Timer ;
-        }
-    }
+    #endregion
 
     #region COROUTINES
-    IEnumerator LoadNewLevelCoroutine(AsyncOperation task)
+    IEnumerator LoadNewLevelCoroutine(AsyncOperation task, float delay)
     {
+        yield return new WaitForSeconds(delay);
+
         yield return StartCoroutine(FadingOutScene(task));
         SetUpInNewLevel();
         isLoading = false;

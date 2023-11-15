@@ -24,6 +24,7 @@ public class EnemyEntity : EntityGeneric
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
         TryGetComponent<Animator>(out anim);
         IsDied = false;
     }
