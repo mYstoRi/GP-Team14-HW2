@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,8 @@ public class PlayerEntity : EntityGeneric
     }
 
     #region VARIABLES
-    [SerializeField] float surviveTime = 100;   //survive time in seconds, defult: 1 min 40 sec
+    [SerializeField] PlayerData playerData;
+    [SerializeField] float surviveTime = 10;   //survive time in seconds, defult: 1 min 40 sec
     float surviveTimer = 0;
     private Animator anim;
     #endregion
@@ -31,6 +33,11 @@ public class PlayerEntity : EntityGeneric
     }
     public void UpdateTimer(float newValue)
     {
+        if(newValue <= 0)
+        {
+            newValue = 0;
+            if(SurviveTimer > 0)  LevelManager.instance.Invoke(nameof(LevelManager.instance.GameOver), 0.2f);
+        }
         surviveTimer = newValue;
         UIManager.instance.UpdateTimerUI(newValue);
     }
@@ -49,12 +56,24 @@ public class PlayerEntity : EntityGeneric
         // restart game in the mean time (async load + fade)
         StartCoroutine(Dying());
     }
+    public override void Initialize()
+    {
+        base.Initialize();
+        PlayerData playerData = (PlayerData)data;
+        surviveTime = playerData.SurviveTime;
+        SurviveTimer = surviveTime;
+
+        anim = GetComponent<Animator>();
+        IsDied = false;
+    }
+    private void Awake() 
+    {
+        
+    }
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        IsDied = false;
-        SurviveTimer = surviveTime;
+        this.Initialize();
     }
 
     private void Update() 

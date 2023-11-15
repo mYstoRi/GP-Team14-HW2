@@ -4162,6 +4162,7 @@ MonoBehaviour:
   motionSmooth: 0.8
   jumpHeight: 6
   anim: {fileID: 0}
+  debugLookAt: {fileID: 0}
 --- !u!114 &4177179152155511833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4251,8 +4252,11 @@ MonoBehaviour:
   speed: 6
   attack: 20
   attackSpeed: 2
+  data: {fileID: 11400000, guid: 3e86bd5c5ad83f94ea9c3d5210b06843, type: 2}
   maxHealth: 100
-  health: 100
+  IsDied: 0
+  playerData: {fileID: 0}
+  surviveTime: 10
   enableTestingHp: 0
 --- !u!54 &6794374505050533551
 Rigidbody:

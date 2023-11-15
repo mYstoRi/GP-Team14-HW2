@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkullsInSombreros2.0 Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3734071867928118084, guid: f9e23e59ed504e245b86af511dfd99e4, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e86bd5c5ad83f94ea9c3d5210b06843, type: 2}
     - target: {fileID: 4218812618134749178, guid: f9e23e59ed504e245b86af511dfd99e4, type: 3}
       propertyPath: m_RootOrder
       value: 0

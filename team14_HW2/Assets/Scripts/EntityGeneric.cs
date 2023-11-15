@@ -24,8 +24,9 @@ public class EntityGeneric : MonoBehaviour
     public float speed;
     public float attack;
     public float attackSpeed;
+    [SerializeField] protected EntityData data;
     [SerializeField] float maxHealth;
-    [SerializeField] float health;
+    float health;
     public bool IsDied;
     #endregion
 
@@ -55,6 +56,11 @@ public class EntityGeneric : MonoBehaviour
             if (!IsDied) Die();
         }
     }
+    public virtual void Initialize()
+    {
+        maxHealth = data.MaxHealth;
+        health = maxHealth;
+    }
     #endregion
 
     #region METHODS
@@ -78,7 +84,7 @@ public class EntityGeneric : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
     }
 
     // Update is called once per frame

@@ -948,11 +948,16 @@ MonoBehaviour:
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+  meleeAttackEnabled: 1
+  meleeAttackRange: 2
+  meleeAttackDamage: 5
+  meleeAttackCooldown: 3
   projectilePrefabs:
   - {fileID: 3107941154959935941, guid: 3e8660f000096bc41a23a74be0587e48, type: 3}
   projectileOrigin: {fileID: 8288991710400583811}
+  projectileAttackEnabled: 1
   projectileAttackRange: 16
-  projectileCooldown: 3
+  projectileAttackCooldown: 3
 --- !u!114 &421229217022226377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +973,6 @@ MonoBehaviour:
   speed: 0
   attack: 0
   attackSpeed: 0
+  data: {fileID: 11400000, guid: fa569f39f80175b4eb3c78b3d7b42e21, type: 2}
   maxHealth: 100
-  health: 100
   IsDied: 0
