@@ -17,11 +17,23 @@ public class PlayerEntity : EntityGeneric
             UpdateTimer(value);
         }
     }
+    public int KillsCount
+    {
+        get
+        {
+            return killsCount;
+        }
+        set
+        {
+            UpdateKillsCount(value);
+        }
+    }
 
     #region VARIABLES
     [SerializeField] PlayerData playerData;
     [SerializeField] float surviveTime = 10;   //survive time in seconds, defult: 1 min 40 sec
     float surviveTimer = 0;
+    int killsCount = 0;
     private Animator anim;
     #endregion
 
@@ -41,7 +53,15 @@ public class PlayerEntity : EntityGeneric
         surviveTimer = newValue;
         UIManager.instance.UpdateTimerUI(newValue);
     }
+    public void UpdateKillsCount(int newValue)
+    {
+        bool flag = killsCount < newValue;
+        killsCount = newValue;
+        UIManager.instance.UpdateKillsCountUI(newValue);
 
+        if(newValue >= LevelManager.instance.KillsCountToNextLevel && flag)
+            LevelManager.instance.LoadNextLevel();
+    }
     IEnumerator Dying()
     {
         yield return new WaitForSeconds(Time.deltaTime);
@@ -59,6 +79,7 @@ public class PlayerEntity : EntityGeneric
     public override void Initialize()
     {
         base.Initialize();
+        UpdateKillsCount(0);
         PlayerData playerData = (PlayerData)data;
         surviveTime = playerData.SurviveTime;
         SurviveTimer = surviveTime;
