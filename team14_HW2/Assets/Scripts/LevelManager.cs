@@ -13,8 +13,9 @@ public class LevelManager : MonoBehaviour
         public float PlayerHp;
         public float Timer;
     }
-
+    
     public PlayerEntity Player { get { return FindObjectOfType<PlayerEntity>()?.GetComponent<PlayerEntity>(); } }
+    public int KillsCountToNextLevel = 10; 
     [SerializeField] Image fadeImage;
     LevelInfo levelInfo = new ();
     bool isLoading = false;
@@ -86,9 +87,10 @@ public class LevelManager : MonoBehaviour
         levelInfo.isInitialized = false;
         LoadScene("GameOver", 0.1f);
     }
-    static public void LoadMainMenu()
+    public void Win()
     {
-        LoadScene("MainMenu", 0.2f);
+        levelInfo.isInitialized = false;
+        LoadScene("Win", 0.5f);
     }
     public void ReloadCurrentLevel()
     {
@@ -98,6 +100,27 @@ public class LevelManager : MonoBehaviour
 
         string loadedLevelName = SceneManager.GetActiveScene().name;
         LoadScene(loadedLevelName, 0.5f);
+    }
+    public void LoadNextLevel()
+    {
+        string levelSceneName = SceneManager.GetActiveScene().name;
+
+        if(levelSceneName == "Level_" + 1)
+        {
+            LoadLevel(2);
+        }
+        else if(levelSceneName == "Level_" + 2)
+        {
+            LoadLevel(3);
+        }
+        else if(levelSceneName == "Level_" + 3)
+        {
+            Win();
+        }
+    }
+    static public void LoadMainMenu()
+    {
+        LoadScene("MainMenu", 0.2f);
     }
     static public void LoadLevel(int level)
     {

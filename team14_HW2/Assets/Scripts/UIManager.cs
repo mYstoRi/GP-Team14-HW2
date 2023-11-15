@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image hpFullBar;
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI timerText;
+    [SerializeField] TextMeshProUGUI killsCountText;
     PlayerEntity playerEntity;
     void Awake() 
     {
@@ -42,6 +43,10 @@ public class UIManager : MonoBehaviour
     public void UpdateTimerUI(float time)
     {
         timerText.text = "Time: " + ShowNumber((int)(time / 60)) + ":" + ShowNumber((int)(time % 60));
+    }
+    public void UpdateKillsCountUI(int count)
+    {
+        killsCountText.text = "Kills: " + count + "/" + LevelManager.instance.KillsCountToNextLevel;
     }
     string ShowNumber(int num)
     {

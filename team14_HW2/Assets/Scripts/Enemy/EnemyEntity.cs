@@ -19,6 +19,7 @@ public class EnemyEntity : EntityGeneric
         if (anim != null) anim.SetBool("Die", true);
         if (TryGetComponent<EnemyMovement>(out EnemyMovement em)) em.enabled = false;
         IsDied = true;
+        LevelManager.instance.Player.KillsCount++;
     }
 
     // Start is called before the first frame update
