@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d205a2b2027e0146a3b1cea079f0151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KillsCountToNextLevel: 1
+  KillsCountToNextLevel: 8
   fadeImage: {fileID: 3302999575850368350}
 --- !u!1 &3302999575531324612
 GameObject:

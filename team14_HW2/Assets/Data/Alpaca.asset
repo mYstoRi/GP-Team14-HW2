@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99e4f7f41c9ebd43b4ff560fcd757f4, type: 3}
   m_Name: Alpaca
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 75
