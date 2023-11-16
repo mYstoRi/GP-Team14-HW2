@@ -7,6 +7,9 @@ public class EnemyMovement : MonoBehaviour
     private GameObject approachingTarget = null;
     private Rigidbody rb;
 
+    // debug purpose
+    private Vector3 lastPosition;
+
     [Header("~~Gathering Options~~")]
     public bool enemyGatheringEnabled = false;
 
@@ -55,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lastPosition = transform.position;
         StartCoroutine(MeleeAttackCoroutine());
         StartCoroutine(ProjectileAttackCoroutine());
     }
@@ -69,8 +73,14 @@ public class EnemyMovement : MonoBehaviour
         UpdateApproachingTarget();
         if(Random.Range(0f, 1f) > flipApproachAngleChance) approachAngleFliped = !approachAngleFliped;
         ApproachTarget();
+        rb.velocity = new Vector3(rb.velocity.x, -2.0f, rb.velocity.z);
     }
 
+    private void LateUpdate()
+    {
+        print("delta = " + (transform.position - lastPosition).ToString());
+        lastPosition = transform.position;
+    }
 
     // Compare all Player/Enemy's distance to decide a target to approach
     private void UpdateApproachingTarget()
@@ -153,7 +163,6 @@ public class EnemyMovement : MonoBehaviour
         // Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1)).normalized * moveSpeed;
         // approachDirection += rb.velocity.y * Vector3.up;
         // rb.velocity = approachDirection.normalized * moveSpeed; // This is not working somehow
-        print(rb.velocity);
         if (Vector3.Distance(transform.position, approachingTarget.transform.position) < closestDistance2Player)
         {
             Vector3 fixingDirection = Vector3.Scale(transform.position-approachingTarget.transform.position, new Vector3(1, 0, 1));

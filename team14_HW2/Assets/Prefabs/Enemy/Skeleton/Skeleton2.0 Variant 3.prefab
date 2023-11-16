@@ -110,24 +110,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &-2807694100388836662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8889665028458528459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  attack: 0
-  attackSpeed: 0
-  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
-  maxHealth: 40
-  IsDied: 0
 --- !u!114 &-7762679740002041370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +141,21 @@ MonoBehaviour:
   projectileAttackEnabled: 0
   projectileAttackRange: 16
   projectileAttackCooldown: 3
+--- !u!114 &-2807694100388836662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889665028458528459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
+  maxHealth: 40
+  IsDied: 0
