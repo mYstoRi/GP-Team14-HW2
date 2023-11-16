@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.012403426
       objectReference: {fileID: 0}
+    - target: {fileID: 1600744941076726412, guid: a963842a55c1399429b5cbdd0c99b53f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c4ff78c7c33ec05488f0e6239ff521d0, type: 2}
     - target: {fileID: 1611176535336758879, guid: a963842a55c1399429b5cbdd0c99b53f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -658,6 +662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alpaca2.0 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5685696757667962341, guid: a963842a55c1399429b5cbdd0c99b53f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5832842814969708563, guid: a963842a55c1399429b5cbdd0c99b53f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -917,6 +925,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-1941221150127543269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272101548913696932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  attack: 10
+  attackSpeed: 1
+  data: {fileID: 11400000, guid: fa569f39f80175b4eb3c78b3d7b42e21, type: 2}
+  maxHealth: 100
+  IsDied: 0
 --- !u!114 &4551244619060653139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,11 +965,16 @@ MonoBehaviour:
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+  meleeAttackEnabled: 1
+  meleeAttackRange: 2
+  meleeAttackDamage: 5
+  meleeAttackCooldown: 3
   projectilePrefabs:
   - {fileID: 3107941154959935941, guid: 3e8660f000096bc41a23a74be0587e48, type: 3}
   projectileOrigin: {fileID: 3962483083698707682}
+  projectileAttackEnabled: 1
   projectileAttackRange: 16
-  projectileCooldown: 3
+  projectileAttackCooldown: 3
 --- !u!4 &7012565282400719543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700108729530806262, guid: a963842a55c1399429b5cbdd0c99b53f, type: 3}

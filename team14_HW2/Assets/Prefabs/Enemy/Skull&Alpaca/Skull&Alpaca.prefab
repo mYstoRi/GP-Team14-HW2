@@ -2954,9 +2954,10 @@ GameObject:
   - component: {fileID: 198350889420976953}
   - component: {fileID: -4445704368840585057}
   - component: {fileID: -2692879132961500897}
+  - component: {fileID: 4813096890844842175}
   m_Layer: 0
   m_Name: Skull&Alpaca
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2989,7 +2990,7 @@ Animator:
   m_GameObject: {fileID: 5529880613451588412}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4f322962346480e4fa9326ce2eddead7, type: 3}
-  m_Controller: {fileID: 9100000, guid: c4070ddd7b7c4e24ebb962f0a74d74d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: ced481ebf71952b40a3e4bf464c52e80, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3061,6 +3062,24 @@ MonoBehaviour:
   projectileAttackEnabled: 1
   projectileAttackRange: 16
   projectileAttackCooldown: 3
+--- !u!114 &4813096890844842175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5529880613451588412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
+  maxHealth: 200
+  IsDied: 0
 --- !u!1 &5529880614495038575
 GameObject:
   m_ObjectHideFlags: 0

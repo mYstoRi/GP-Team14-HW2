@@ -12,6 +12,8 @@ public class EnemySpawnPoint : MonoBehaviour
     public int miniumWeight = 1; // lower bound of weight  (negitive for not bounding)
     public int maxiumWeight = -1; // lower bound of weight  (negitive for not bounding)
 
+    private GameObject prefab;
+
     void Start()
     {
         enemyPrefabs.RemoveAll(x => x==null); // remove null prefab;
@@ -22,7 +24,8 @@ public class EnemySpawnPoint : MonoBehaviour
         if(enemyPrefabs.Count > 0)
         {
             UpdateWeight();
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], transform.position, Quaternion.identity, transform); // Spawn Enemy here
+            prefab = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], transform.position, Quaternion.identity, transform); // Spawn Enemy here
+            prefab.tag = "Enemy";
         }
         else Debug.LogWarning("Spawning a EnemySpawnPoint with no enemy prefab!");
     }

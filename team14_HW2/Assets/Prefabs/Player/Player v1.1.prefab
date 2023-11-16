@@ -72,6 +72,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5314174943040027688, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
+      propertyPath: jumpHeight
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314174943040027688, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
       propertyPath: debugLookAt
       value: 
       objectReference: {fileID: 0}
@@ -79,6 +83,10 @@ PrefabInstance:
       propertyPath: ArrowPrefab
       value: 
       objectReference: {fileID: 5860370882206892430, guid: 7574a37bc932ec8449392335893c1a61, type: 3}
+    - target: {fileID: 6340770894293648428, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
+      propertyPath: projectileSpeed
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7340595740412135807, guid: d9aa8700fd2659448ae5fb45ee6583d7, type: 3}
       propertyPath: field of view
       value: 43.151962
@@ -171,5 +179,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0

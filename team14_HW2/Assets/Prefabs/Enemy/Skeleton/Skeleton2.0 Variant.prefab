@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9b9b42424476897418273b51cf4ec3db, type: 2}
+    - target: {fileID: 3273022289031007646, guid: 5c1de81a385d63944ac2e2a71aa3e840, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ced481ebf71952b40a3e4bf464c52e80, type: 2}
     - target: {fileID: 3371106560729594724, guid: 5c1de81a385d63944ac2e2a71aa3e840, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -79,6 +83,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton2.0 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8484014752067179255, guid: 5c1de81a385d63944ac2e2a71aa3e840, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c1de81a385d63944ac2e2a71aa3e840, type: 3}
 --- !u!1 &1560985664168699226 stripped
@@ -102,6 +110,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-5057516058397153247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560985664168699226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
+  maxHealth: 40
+  IsDied: 0
 --- !u!114 &-1541336949948927605
 MonoBehaviour:
   m_ObjectHideFlags: 0

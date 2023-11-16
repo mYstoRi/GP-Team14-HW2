@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skull&Alpaca Variant 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3878442088271335666, guid: 8ab60e19415851646b3a5fb4831eaefa, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4087883759048360769, guid: 8ab60e19415851646b3a5fb4831eaefa, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.003870846
@@ -550,6 +554,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5ded4857fe182d48bb9810f71365215, type: 2}
+    - target: {fileID: 7855303175871664027, guid: 8ab60e19415851646b3a5fb4831eaefa, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ced481ebf71952b40a3e4bf464c52e80, type: 2}
     - target: {fileID: 7973389488290395698, guid: 8ab60e19415851646b3a5fb4831eaefa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -678,6 +686,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-1052323771462694351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278274468167138724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
+  maxHealth: 200
+  IsDied: 0
 --- !u!114 &1351368791158383808
 MonoBehaviour:
   m_ObjectHideFlags: 0
