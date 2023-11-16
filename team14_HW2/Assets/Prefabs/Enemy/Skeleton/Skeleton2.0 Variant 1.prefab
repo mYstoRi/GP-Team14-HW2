@@ -126,7 +126,7 @@ MonoBehaviour:
   attack: 0
   attackSpeed: 0
   data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
-  maxHealth: 100
+  maxHealth: 40
   IsDied: 0
 --- !u!114 &4228048380458536537
 MonoBehaviour:

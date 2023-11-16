@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private GameObject approachingTarget = null;
-
+    private Rigidbody rb;
 
     [Header("~~Gathering Options~~")]
     public bool enemyGatheringEnabled = false;
@@ -54,19 +54,21 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(MeleeAttackCoroutine());
         StartCoroutine(ProjectileAttackCoroutine());
     }
 
     void Update()
     {
-        ApproachTarget();
+        
     }
 
     void FixedUpdate()
     {
         UpdateApproachingTarget();
         if(Random.Range(0f, 1f) > flipApproachAngleChance) approachAngleFliped = !approachAngleFliped;
+        ApproachTarget();
     }
 
 
@@ -146,8 +148,13 @@ public class EnemyMovement : MonoBehaviour
 
         float __approachAngle = (approachingTarget.CompareTag("Enemy")||!angularApproachEnabled)?0f:approachAngle;
         Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1));
-        transform.position = transform.position + approachDirection.normalized*moveSpeed*Time.deltaTime;
-        if(Vector3.Distance(transform.position, approachingTarget.transform.position) < closestDistance2Player)
+        transform.position = transform.position + approachDirection.normalized * moveSpeed * Time.deltaTime;
+        // should not use teleport, use velocity/addforce
+        // Vector3 approachDirection = Vector3.Scale(CalculateApproachVector(__approachAngle), new Vector3(1, 0, 1)).normalized * moveSpeed;
+        // approachDirection += rb.velocity.y * Vector3.up;
+        // rb.velocity = approachDirection.normalized * moveSpeed; // This is not working somehow
+        print(rb.velocity);
+        if (Vector3.Distance(transform.position, approachingTarget.transform.position) < closestDistance2Player)
         {
             Vector3 fixingDirection = Vector3.Scale(transform.position-approachingTarget.transform.position, new Vector3(1, 0, 1));
             transform.position = approachingTarget.transform.position + fixingDirection.normalized*closestDistance2Player;

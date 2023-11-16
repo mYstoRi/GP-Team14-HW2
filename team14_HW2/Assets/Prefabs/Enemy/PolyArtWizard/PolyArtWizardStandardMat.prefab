@@ -657,9 +657,10 @@ GameObject:
   - component: {fileID: 136306802490482818}
   - component: {fileID: -2657174161767619658}
   - component: {fileID: 7371900724046535625}
+  - component: {fileID: 4250581312938833867}
   m_Layer: 0
   m_Name: PolyArtWizardStandardMat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -763,6 +764,24 @@ MonoBehaviour:
   projectileAttackEnabled: 1
   projectileAttackRange: 16
   projectileAttackCooldown: 3
+--- !u!114 &4250581312938833867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248815240492774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: fa569f39f80175b4eb3c78b3d7b42e21, type: 2}
+  maxHealth: 80
+  IsDied: 0
 --- !u!1 &1251583507443948
 GameObject:
   m_ObjectHideFlags: 0

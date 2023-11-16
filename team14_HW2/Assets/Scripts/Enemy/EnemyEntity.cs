@@ -26,6 +26,7 @@ public class EnemyEntity : EntityGeneric
     void Start()
     {
         Initialize();
+        this.tag = "Enemy";
         TryGetComponent<Animator>(out anim);
         IsDied = false;
     }

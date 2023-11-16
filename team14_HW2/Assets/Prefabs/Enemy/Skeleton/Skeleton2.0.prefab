@@ -2535,10 +2535,11 @@ GameObject:
   - component: {fileID: 3273022289031007646}
   - component: {fileID: 4713101956823323574}
   - component: {fileID: -3723587636829878612}
+  - component: {fileID: -6522492411030932089}
   - component: {fileID: 1545774353697384709}
   m_Layer: 0
   m_Name: Skeleton2.0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2575,7 +2576,7 @@ Animator:
   m_GameObject: {fileID: 8484014752067179255}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7b3459fea0e942f449eaeeea4784bf9a, type: 3}
-  m_Controller: {fileID: 9100000, guid: 956ab52f748078f4d923f58ad824f416, type: 2}
+  m_Controller: {fileID: 9100000, guid: ced481ebf71952b40a3e4bf464c52e80, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2615,6 +2616,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-6522492411030932089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484014752067179255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  attack: 0
+  attackSpeed: 0
+  data: {fileID: 11400000, guid: 2557d05f4031ac0409ad2e3b5f34ad93, type: 2}
+  maxHealth: 40
+  IsDied: 0
 --- !u!114 &1545774353697384709
 MonoBehaviour:
   m_ObjectHideFlags: 0

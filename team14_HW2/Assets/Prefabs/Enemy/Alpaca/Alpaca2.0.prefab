@@ -733,9 +733,10 @@ GameObject:
   - component: {fileID: 4451326670016830192}
   - component: {fileID: 213467049623281586}
   - component: {fileID: 108047505881088912}
+  - component: {fileID: 429591033000397572}
   m_Layer: 0
   m_Name: Alpaca2.0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -768,7 +769,7 @@ Animator:
   m_GameObject: {fileID: 5685696757667962341}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4f322962346480e4fa9326ce2eddead7, type: 3}
-  m_Controller: {fileID: 9100000, guid: c4070ddd7b7c4e24ebb962f0a74d74d3, type: 2}
+  m_Controller: {fileID: 9100000, guid: c4ff78c7c33ec05488f0e6239ff521d0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -829,11 +830,34 @@ MonoBehaviour:
   approachAngle: 1
   flipApproachAngleChance: 0.99
   approachAngleFliped: 0
+  meleeAttackEnabled: 1
+  meleeAttackRange: 2
+  meleeAttackDamage: 5
+  meleeAttackCooldown: 3
   projectilePrefabs:
   - {fileID: 3107941154959935941, guid: 3e8660f000096bc41a23a74be0587e48, type: 3}
   projectileOrigin: {fileID: 2946194812186021420}
+  projectileAttackEnabled: 1
   projectileAttackRange: 16
-  projectileCooldown: 3
+  projectileAttackCooldown: 3
+--- !u!114 &429591033000397572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685696757667962341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6560a1a0cce680d4780122689b355094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  attack: 10
+  attackSpeed: 1
+  data: {fileID: 11400000, guid: fa569f39f80175b4eb3c78b3d7b42e21, type: 2}
+  maxHealth: 100
+  IsDied: 0
 --- !u!1 &5730272788199328549
 GameObject:
   m_ObjectHideFlags: 0
