@@ -60,6 +60,7 @@ public class EntityGeneric : MonoBehaviour
     public virtual void Initialize()
     {
         maxHealth = data.MaxHealth;
+        if(gameObject.tag=="Player") Debug.Log(data.MaxHealth);
         health = maxHealth;
     }
     #endregion

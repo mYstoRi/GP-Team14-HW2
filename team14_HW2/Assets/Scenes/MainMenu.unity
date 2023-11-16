@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3302999575483883589, guid: 6881b45f89eac0442b29f0238d83904a, type: 3}
+      propertyPath: KillsCountToNextLevel
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6881b45f89eac0442b29f0238d83904a, type: 3}
 --- !u!850595691 &533779529
@@ -843,7 +847,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD to move\nKill enemies before you \nrun out of time!\nKill 8 enemies
+  m_text: "WASD to move\nKill enemies before you \nrun out of time!\nKill 5 enemies
     to next \nlevel"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

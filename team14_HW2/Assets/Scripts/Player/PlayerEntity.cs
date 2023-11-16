@@ -30,7 +30,6 @@ public class PlayerEntity : EntityGeneric
     }
 
     #region VARIABLES
-    [SerializeField] PlayerData playerData;
     [SerializeField] float surviveTime = 10;   //survive time in seconds, defult: 1 min 40 sec
     float surviveTimer = 0;
     int killsCount = 0;
@@ -78,9 +77,10 @@ public class PlayerEntity : EntityGeneric
     }
     public override void Initialize()
     {
+        PlayerData playerData = (PlayerData)data;
         base.Initialize();
         UpdateKillsCount(0);
-        PlayerData playerData = (PlayerData)data;
+        UpdateHealth(Health);
         surviveTime = playerData.SurviveTime;
         SurviveTimer = surviveTime;
 

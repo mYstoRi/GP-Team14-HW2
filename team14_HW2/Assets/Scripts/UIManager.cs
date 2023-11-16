@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-        Init();
+        
     }
     void Init()
     {
